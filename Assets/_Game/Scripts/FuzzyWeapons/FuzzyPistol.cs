@@ -64,11 +64,10 @@ public class FuzzyPistol : FuzzyLogic
 
     private void Update()
     {
-        // float[] distanceValues = FuzzifyDistance(); 
-        // float[] ammoValues = FuzzifyAmmo();
-        // float[] desirabilityValues = FuzziRulesOutput(distanceValues, ammoValues);
-        // Debug.Log(desirabilityValues[0] + " " + desirabilityValues[1] + " " + desirabilityValues[2]);
-        // float desirability = CalculateCentroid(desirabilityValues);
-        // Debug.Log(desirability);
+        float[] distanceValues = FuzzifyDistance(); 
+        float[] ammoValues = FuzzifyAmmo();
+        float[] desirabilityValues = FuzziRulesOutput(distanceValues, ammoValues);
+        float desirability = CalculateCentroid(desirabilityValues);
+        Debug.Log("Desirability Pistol:  " + desirability);
     }
 }
