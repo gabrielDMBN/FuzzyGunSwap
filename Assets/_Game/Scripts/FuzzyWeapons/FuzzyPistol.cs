@@ -16,7 +16,7 @@ public class FuzzyPistol : FuzzyLogic
     [SerializeField] private AnimationCurve lowAmmoCurve;
     [SerializeField] private AnimationCurve mediumAmmoCurve;
     [SerializeField] private AnimationCurve highAmmoCurve;
-    
+
     //Fuzzification
     public override float[] FuzzifyAmmo()
     {
@@ -26,7 +26,7 @@ public class FuzzyPistol : FuzzyLogic
         fuzzifiedValues[2] = highAmmoCurve.Evaluate(ammoCount);
         return fuzzifiedValues;
     }
-    
+
     //Fuzzy Rules
     public override float[] FuzziRulesOutput(float[] distanceValues, float[] ammoValues)
     {
@@ -50,7 +50,7 @@ public class FuzzyPistol : FuzzyLogic
         desirabilityValues[0] = Mathf.Max(desirabilityValues[0], Mathf.Min(distanceValues[0], ammoValues[1]));
         // Rule 9 IF Target_Close AND Ammo_Low THEN Undesirable
         desirabilityValues[0] = Mathf.Max(desirabilityValues[0], Mathf.Min(distanceValues[0], ammoValues[0]));
-        
+
         //Empty Rule: IF Ammo is Empty THEN 100% Undesirable
         if (ammoCount <= 0)
         {
@@ -58,16 +58,24 @@ public class FuzzyPistol : FuzzyLogic
             desirabilityValues[1] = 0;
             desirabilityValues[2] = 0;
         }
-        
+
         return desirabilityValues;
     }
 
-    private void Update()
+    public float FuzzyPistolSystem()
     {
-        float[] distanceValues = FuzzifyDistance(); 
+        float[] distanceValues = FuzzifyDistance();
         float[] ammoValues = FuzzifyAmmo();
         float[] desirabilityValues = FuzziRulesOutput(distanceValues, ammoValues);
         float desirability = CalculateCentroid(desirabilityValues);
-        Debug.Log("Desirability Pistol:  " + desirability);
+        return desirability;
+        
+    }
+
+
+private void Update()
+    {
+        float desirability = FuzzyPistolSystem();
+        Debug.Log("Desirability Pistol: " + desirability);
     }
 }

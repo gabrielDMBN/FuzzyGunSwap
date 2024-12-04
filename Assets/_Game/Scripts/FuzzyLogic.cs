@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,16 +70,26 @@ public abstract class FuzzyLogic : MonoBehaviour
         // Evitar divisão por zero
         if (denominator == 0f)
         {
-            Debug.LogWarning("Nenhuma área relevante sob as curvas truncadas.");
+           // Debug.LogWarning("Nenhuma área relevante sob as curvas truncadas.");
             return 0f;
         }
 
         // Retorna o centroide
         return numerator / denominator;
     }
-    
-    
-    
-    
-    
+
+    public float FuzzySystem()
+    {
+        float[] distanceValues = FuzzifyDistance();
+        float[] ammoValues = FuzzifyAmmo();
+        float[] desirabilityValues = FuzziRulesOutput(distanceValues, ammoValues);
+        float desirability = CalculateCentroid(desirabilityValues);
+        return desirability;
+    }
+
+
+
+
+
+
 }

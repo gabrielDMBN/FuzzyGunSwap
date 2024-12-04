@@ -53,13 +53,20 @@ public class FuzzyShotgun : FuzzyLogic
         
         return desirabilityValues;
     }
-
-    private void Update()
+    
+    public float FuzzyShotgunSystem()
     {
-        float[] distanceValues = FuzzifyDistance(); 
+        float[] distanceValues = FuzzifyDistance();
         float[] ammoValues = FuzzifyAmmo();
         float[] desirabilityValues = FuzziRulesOutput(distanceValues, ammoValues);
         float desirability = CalculateCentroid(desirabilityValues);
+        return desirability;
+        
+    }
+
+    private void Update()
+    {
+        float desirability = FuzzyShotgunSystem();
         Debug.Log("Desirability Shotgun:  " + desirability);
     }
 }
