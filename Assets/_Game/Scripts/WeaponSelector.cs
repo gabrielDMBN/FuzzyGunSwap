@@ -11,10 +11,18 @@ public class WeaponSelector : MonoBehaviour
     [SerializeField] private GameObject sniper;
     [SerializeField] private GameObject _currentWeapon;
     [SerializeField] private GameObject gunsInfo;
+    [SerializeField] private ParticleSystem switchWeaponEffect;
+    [SerializeField] private Transform switchWeaponEffectPosition;
 
     private FuzzyPistol fuzzyPistol;
     private FuzzyShotgun fuzzyShotgun;
     private FuzzySniper fuzzySniper;
+
+
+    private void Awake()
+    {
+        //_currentWeapon = null;
+    }
 
     void Start()
     {
@@ -34,6 +42,32 @@ public class WeaponSelector : MonoBehaviour
         _currentWeapon.SetActive(false);
         weapon.SetActive(true);
         _currentWeapon = weapon;
+        
+        ParticleSystem effect = Instantiate(switchWeaponEffect, switchWeaponEffectPosition.position, switchWeaponEffectPosition.rotation);
+        Destroy(effect.gameObject, 2f);
+    }
+    
+    public void Shoot()
+    {
+        if (_currentWeapon == sniper)
+        {
+            fuzzySniper.ReduceAmmo();
+        }
+        if (_currentWeapon == shotgun)
+        {
+            fuzzyShotgun.ReduceAmmo();
+        }
+        if (_currentWeapon == pistol)
+        {
+            fuzzyPistol.ReduceAmmo();
+        }
+    }
+    
+    public void NewDistance(float distance)
+    {
+        fuzzySniper.SetDistance(distance);
+        fuzzyShotgun.SetDistance(distance);
+        fuzzyPistol.SetDistance(distance);
     }
 
     public void SelectWeaponByFuzzyLogic()

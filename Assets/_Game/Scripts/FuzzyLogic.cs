@@ -86,6 +86,17 @@ public abstract class FuzzyLogic : MonoBehaviour
         float desirability = CalculateCentroid(desirabilityValues);
         return desirability;
     }
+    
+    public void ReduceAmmo()
+    {
+        if (ammoCount <= 0) return;
+        ammoCount--;
+    }
+    
+    public void SetDistance(float distance)
+    {
+        distanceToPlayer = distance;
+    }
 
 
 
