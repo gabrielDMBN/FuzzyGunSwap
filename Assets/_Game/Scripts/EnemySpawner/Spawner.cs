@@ -68,7 +68,6 @@ public class Spawner : MonoBehaviour
         yield return new WaitForSeconds(3);
         
         gunManager.Shoot();
-        Weapon.instance.ShootEffect();
         
         Enemy.instance.Hit();
         

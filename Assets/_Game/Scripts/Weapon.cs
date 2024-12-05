@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,9 +20,5 @@ public class Weapon : MonoBehaviour
         ParticleSystem effect = Instantiate(shotEffect, shotPosition.position, Quaternion.identity);
         Destroy(effect.gameObject, 2f);
     }
-
-    
-
-  
     
 }
