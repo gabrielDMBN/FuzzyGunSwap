@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToPlayer: 20
-  ammoCount: 8
+  ammoCount: 6
   undesirable:
     serializedVersion: 2
     m_Curve:
@@ -454,7 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToPlayer: 20
-  ammoCount: 10
+  ammoCount: 4
   undesirable:
     serializedVersion: 2
     m_Curve:
@@ -756,7 +756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToPlayer: 20
-  ammoCount: 7
+  ammoCount: 12
   undesirable:
     serializedVersion: 2
     m_Curve:

@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] private GameObject gunsInfo;
-
-    private FuzzyPistol fuzzyPistol;
-    private FuzzyShotgun fuzzyShotgun;
-    private FuzzySniper fuzzySniper;
-
-    void Start()
+    public static Weapon instance { get; private set; }
+    
+    [SerializeField] private Transform shotPosition;
+    [SerializeField] private ParticleSystem shotEffect;
+    
+    void Awake()
     {
-        //_currentWeapon = pistol;
-        GameObject sniperGameObject = gunsInfo;
-        GameObject shotgunGameObject = gunsInfo;
-        GameObject pistolGameObject = gunsInfo;
-
-        if (sniperGameObject != null) fuzzySniper = sniperGameObject.GetComponent<FuzzySniper>();
-        if (shotgunGameObject != null) fuzzyShotgun = shotgunGameObject.GetComponent<FuzzyShotgun>();
-        if (pistolGameObject != null) fuzzyPistol = pistolGameObject.GetComponent<FuzzyPistol>();
-
+        instance = this;
     }
+    
+    public void ShootEffect()
+    {
+        ParticleSystem effect = Instantiate(shotEffect, shotPosition.position, Quaternion.identity);
+        Destroy(effect.gameObject, 2f);
+    }
+
+    
+
+  
     
 }

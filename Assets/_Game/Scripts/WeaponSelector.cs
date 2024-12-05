@@ -90,6 +90,16 @@ public class WeaponSelector : MonoBehaviour
         }
         
     }
+    
+    public bool IsAmmoEmpty()
+    {
+        if( fuzzyPistol.GetAmmo() <= 0 && fuzzyShotgun.GetAmmo() <= 0 && fuzzySniper.GetAmmo() <= 0)
+        {
+            return true;
+        }
+        return false;
+        
+    }
 
     private void Update()
     {

@@ -93,6 +93,11 @@ public abstract class FuzzyLogic : MonoBehaviour
         ammoCount--;
     }
     
+    public int GetAmmo()
+    {
+        return ammoCount;
+    }
+    
     public void SetDistance(float distance)
     {
         distanceToPlayer = distance;

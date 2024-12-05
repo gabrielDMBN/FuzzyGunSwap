@@ -6,10 +6,17 @@ using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
+    [SerializeField] private GameObject botPrefab;
+    
+    //Efeitos
+    [SerializeField] private ParticleSystem enemySummonEffect;
+    
+    
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private BoxCollider spawnArea;
     [SerializeField] private GameObject distanceInfo;
     
+    private Animator botAnimator;
     private WeaponSelector gunManager;
     private GameObject spawnedEnemy;
     private Queue<GameObject> enemyQueue = new Queue<GameObject>();
@@ -19,6 +26,7 @@ public class Spawner : MonoBehaviour
     private void Start()
     {
         GameObject distanceGameObject = distanceInfo;
+        botAnimator = botPrefab.GetComponent<Animator>();
         if (distanceGameObject != null) gunManager = distanceGameObject.GetComponent<WeaponSelector>();
         
     }
@@ -27,6 +35,11 @@ public class Spawner : MonoBehaviour
     {
         if (!_canSpawn) return;
         Vector3 spawnPosition = new Vector3(Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x), 0, Random.Range(spawnArea.bounds.min.z, spawnArea.bounds.max.z));
+        
+        //efeito
+        ParticleSystem effect = Instantiate(enemySummonEffect, spawnPosition, Quaternion.identity);
+        Destroy(effect.gameObject, 4f);
+        
         gunManager.NewDistance(spawnPosition.x);
         GameObject spawnedEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.Euler(0, -90, 0));
         enemyAnimator = spawnedEnemy.GetComponent<Animator>();
@@ -55,6 +68,10 @@ public class Spawner : MonoBehaviour
         yield return new WaitForSeconds(3);
         
         gunManager.Shoot();
+        Weapon.instance.ShootEffect();
+        
+        Enemy.instance.Hit();
+        
         if (enemyQueue.Count > 0)
         {
             if (enemyAnimator != null)
@@ -74,6 +91,10 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        Spawn();
+        if (gunManager.IsAmmoEmpty() == false)
+        {
+            Spawn();
+        }
+        else botAnimator.SetTrigger("Victory");
     }
 }
