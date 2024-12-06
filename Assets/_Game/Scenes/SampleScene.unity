@@ -36349,7 +36349,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Fechar/Abrir (E)
+  m_text: 'Fuzzy Graphs (E)
 
 '
   m_isRightToLeft: 0
