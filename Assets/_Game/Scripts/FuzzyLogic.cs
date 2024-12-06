@@ -93,6 +93,11 @@ public abstract class FuzzyLogic : MonoBehaviour
         ammoCount--;
     }
     
+    public void RandomizeAmmo(int min, int max)
+    {
+        ammoCount = UnityEngine.Random.Range(min, max);
+    }
+    
     public int GetAmmo()
     {
         return ammoCount;

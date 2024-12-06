@@ -26,9 +26,9 @@ public class WeaponSelector : MonoBehaviour
         GameObject shotgunGameObject = gunsInfo;
         GameObject pistolGameObject = gunsInfo;
 
-        if (sniperGameObject != null) fuzzySniper = sniperGameObject.GetComponent<FuzzySniper>();
-        if (shotgunGameObject != null) fuzzyShotgun = shotgunGameObject.GetComponent<FuzzyShotgun>();
-        if (pistolGameObject != null) fuzzyPistol = pistolGameObject.GetComponent<FuzzyPistol>();
+        if (sniperGameObject != null) fuzzySniper = sniperGameObject.GetComponent<FuzzySniper>(); fuzzySniper.RandomizeAmmo(3,9);
+        if (shotgunGameObject != null) fuzzyShotgun = shotgunGameObject.GetComponent<FuzzyShotgun>(); fuzzyShotgun.RandomizeAmmo(4,15);
+        if (pistolGameObject != null) fuzzyPistol = pistolGameObject.GetComponent<FuzzyPistol>(); fuzzyPistol.RandomizeAmmo(5,30);
 
     }
 
