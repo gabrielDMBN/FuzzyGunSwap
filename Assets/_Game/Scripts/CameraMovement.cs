@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -33,6 +34,13 @@ public class CameraMovement : MonoBehaviour
             {
                 botãoFecharAbrir.ToggleCanvasPosition();
             }
+        }
+
+        // Check for "R" key press to reload the level
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.Log("R key was pressed"); // Check if the R key press is detected
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
