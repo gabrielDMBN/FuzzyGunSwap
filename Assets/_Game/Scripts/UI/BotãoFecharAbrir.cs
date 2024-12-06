@@ -29,11 +29,13 @@ public class BotãoFecharAbrir : MonoBehaviour
         {
             if (isOffScreen)
             {
-                canvasRectTransform.anchoredPosition = originalPosition;
+                canvasObject.SetActive(true);
+                //canvasRectTransform.anchoredPosition = originalPosition;
             }
             else
             {
-                canvasRectTransform.anchoredPosition = offScreenPosition;
+                canvasObject.SetActive(false);
+                //canvasRectTransform.anchoredPosition = offScreenPosition;
             }
             isOffScreen = !isOffScreen;
         }

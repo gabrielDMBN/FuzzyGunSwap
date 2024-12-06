@@ -7,8 +7,8 @@ using UnityEngine;
 public abstract class FuzzyLogic : MonoBehaviour
 {
     //variables
-    [SerializeField] protected float distanceToPlayer;
-    [SerializeField] protected int ammoCount;
+    [SerializeField] public float distanceToPlayer;
+    public int ammoCount;
 
     //desirability curves
     [SerializeField] private AnimationCurve undesirable;

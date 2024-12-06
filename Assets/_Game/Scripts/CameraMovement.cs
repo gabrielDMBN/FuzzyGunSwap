@@ -6,6 +6,7 @@ public class CameraMovement : MonoBehaviour
 {
     public float moveSpeed = 10f;
     public float lookSpeed = 2f;
+    public BotãoFecharAbrir botãoFecharAbrir; // Reference to the BotãoFecharAbrir script
 
     private float rotationX = 0f;
     private float rotationY = 0f;
@@ -23,5 +24,15 @@ public class CameraMovement : MonoBehaviour
         rotationY = Mathf.Clamp(rotationY, -90f, 90f);
 
         transform.localRotation = Quaternion.Euler(rotationY, rotationX, 0);
+
+        // Check for "E" key press to toggle canvas position
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("E key was pressed"); // Check if the E key press is detected
+            if (botãoFecharAbrir != null)
+            {
+                botãoFecharAbrir.ToggleCanvasPosition();
+            }
+        }
     }
 }

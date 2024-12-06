@@ -11,7 +11,6 @@ public class Spawner : MonoBehaviour
     //Efeitos
     [SerializeField] private ParticleSystem enemySummonEffect;
     
-    
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private BoxCollider spawnArea;
     [SerializeField] private GameObject distanceInfo;
@@ -28,7 +27,6 @@ public class Spawner : MonoBehaviour
         GameObject distanceGameObject = distanceInfo;
         botAnimator = botPrefab.GetComponent<Animator>();
         if (distanceGameObject != null) gunManager = distanceGameObject.GetComponent<WeaponSelector>();
-        
     }
     
     private void Spawn()
@@ -46,6 +44,9 @@ public class Spawner : MonoBehaviour
         enemyQueue.Enqueue(spawnedEnemy);
         _canSpawn = false;
 
+        // Update the vertical line when a new enemy is spawned
+        //CurveDrawer.instance.DrawVerticalLine();
+
         StartCoroutine(Eliminate());
         StartCoroutine(Despawn());
         StartCoroutine(ResetSpawn());
@@ -60,7 +61,6 @@ public class Spawner : MonoBehaviour
             GameObject enemyToDespawn = enemyQueue.Dequeue();
             Destroy(enemyToDespawn);
         }
-    
     }
     
     private IEnumerator Eliminate()
@@ -79,6 +79,8 @@ public class Spawner : MonoBehaviour
             }
         }
 
+        // Update the vertical line when an enemy is eliminated
+       // CurveDrawer.instance.DrawVerticalLine();
     }
     
     private IEnumerator ResetSpawn()
