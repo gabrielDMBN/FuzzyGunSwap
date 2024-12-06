@@ -12,6 +12,14 @@ public class CameraMovement : MonoBehaviour
     private float rotationX = 0f;
     private float rotationY = 0f;
 
+    void Start()
+    {
+        // Initialize rotationX and rotationY based on the initial rotation of the camera
+        Vector3 initialRotation = transform.localRotation.eulerAngles;
+        rotationX = initialRotation.y;
+        rotationY = initialRotation.x;
+    }
+
     void Update()
     {
         // Movimento da câmera
